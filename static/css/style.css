@@ -79,13 +79,16 @@ ul {
 }
 ul li {
     position: relative;
-    background-color: #ccc;
     padding: 0 .5em;
     height: 4em;
     line-height: 4em;
     margin-bottom: 1em;
 }
-ul li:after {
+ul li:hover {
+    background-color: #ccc;
+    cursor: pointer;
+}
+ul li:hover:after {
   content:"";
   position: absolute;
   top:0;
@@ -104,13 +107,17 @@ ul li:after {
   z-index:10;
 }
 
+ul li p {
+    margin: 0;
+}
+
 .timer {
     width: 80%;
     border: 2px solid black;
     border-radius: 0.5em;
     text-align: center;
     padding: 0.5em 0;
-    margin: 2em 0;
+    margin: 1em 0 2em 0;
     font-size: 1.5em;
 }
 .btn {
@@ -132,4 +139,11 @@ section button.btn{
 }
 .no-pg-left {
     padding-left: 0;
+}
+
+#curnttask {
+    font-size: 2em;
+    font-style: italic;
+    height: 2.5em;
+    line-height: 2.5em;
 }

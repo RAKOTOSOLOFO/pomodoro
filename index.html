@@ -13,24 +13,22 @@
         <div class="container">
             <h1>Kanban Pomodoro</h1>
             <form >
-                <input type="text" placeholder="Nouvelle tâche" />
-                <input class="btn" type="submit" />
+                <input id="input" type="text" placeholder="Nouvelle tâche" />
+                <input id="addtask" class="btn" value="Ajouter" />
             </form>
             <div class="row">
                 <div class="col-md-4 no-pg-right">
                     <section>
                         <h2>A faire</h2>
-                        <ul>
-                            <li>Taches 3 <span class="glyphicon glyphicon-remove-sign"></span></li>
-                            <li>Taches 4 <span class="glyphicon glyphicon-remove-sign"></span></li>
-                            <li>Taches 5 <span class="glyphicon glyphicon-remove-sign"></span></li>
-                        </ul>
+                        <ul id="todo"></ul>
                     </section>
                 </div>
 
                 <div class="col-md-4 no-pg-left no-pg-right">
                     <section>
                         <h2 class="arrow_box">En cours</h2>
+
+                        <span id="curnttask"></span>
 
                         <div class="timer">
                             <span>25:00</span>
@@ -44,16 +42,13 @@
                 <div class="col-md-4 no-pg-left">
                     <section>
                             <h2>Fait</h2>
-                            <ul>
-                                <li>Taches 3 <span class="glyphicon glyphicon-remove-sign"></span></li>
-                                <li>Taches 4 <span class="glyphicon glyphicon-remove-sign"></span></li>
-                                <li>Taches 5 <span class="glyphicon glyphicon-remove-sign"></span></li>
-                            </ul>
+                            <ul id="done"></ul>
                     </section>
                 </div>
             </div>
         </div>
 
+        <script src="static/external/jquery/dist/jquery.js"></script>
         <script src="static/external/bootstrap/dist/js/bootstrap.js"></script>
         <script src="static/js/script.js"></script>
     </body>
