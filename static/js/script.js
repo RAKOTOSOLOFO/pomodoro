@@ -1,6 +1,7 @@
 $(document).ready(function() {
     console.log('hello');
 
+
     $('#addtask').click(function() {
         var task = $('#input').val();
         $('#input').val('');
