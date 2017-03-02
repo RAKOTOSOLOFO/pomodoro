@@ -1,0 +1,53 @@
+form {
+    width:
+}
+form input[type="text"] {
+    width: 70%;
+}
+form input[type="submit"] {
+    width: 29%;
+}
+
+section{
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 0 0 0.5em 0.5em;
+
+}
+h1{
+    text-align: center;
+
+}
+h2 {
+    border-bottom: 1px solid black;
+    text-align: center;
+    width: 100%;
+
+}
+ul {
+    list-style: none;
+    padding: 0;
+    width: 80%;
+}
+.btn {
+    border: 2px solid black;
+
+}
+section button.btn{
+    width: 70%;
+    margin-bottom: 2em;
+}
+ul li {
+    padding: 1em 0;
+}
+.timer {
+    width: 80%;
+    border: 2px solid black;
+    border-radius: 0.5em;
+    text-align: center;
+    padding: 0.5em 0;
+    margin: 2em 0;
+    font-size: 1.5em;
+}

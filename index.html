@@ -4,9 +4,59 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="static/external/bootstrap/dist/css/bootstrap.css"/>
+        <link rel="stylesheet" href="static/css/style.css">
         <title>Kanban Pomodoro</title>
     </head>
+
     <body>
+        <div class="container">
+
+            <h1>Kanban Pomodoro</h1>
+            <form >
+                <input type="text" name="" value="" />
+                <input class="btn" type="submit" />
+            </form>
+        <div class="row">
+            <div class="col-md-4">
+                <section>
+                    <h2>A faire</h2>
+                    <ul>
+                        <li>Taches 3</li>
+                        <li>Taches 4</li>
+                        <li>Taches 5</li>
+
+                    </ul>
+                </section>
+            </div>
+
+
+            <div class="col-md-4">
+                <section>
+                    <h2>En cours</h2>
+                    <div class="timer">
+                        <span>25:00</span>
+
+                    </div>
+
+                    <button type="button" class="btn" name="button">Début</button>
+                    <button type="button" class="btn" name="button">Pause</button>
+                </section>
+            </div>
+
+            <div class="col-md-4">
+                <section>
+                        <h2>Fait</h2>
+                        <ul>
+
+                            <li>Taches 3</li>
+                            <li>Taches 4</li>
+                            <li>Taches 5</li>
+                        </ul>
+                </section>
+            </div>
+
+        </div>
 
         <script src="static/external/bootstrap/dist/js/bootstrap.js"></script>
         <script src="static/js/script.js"></script>
