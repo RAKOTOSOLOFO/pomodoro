@@ -11,51 +11,47 @@
 
     <body>
         <div class="container">
-
             <h1>Kanban Pomodoro</h1>
             <form >
                 <input type="text" placeholder="Nouvelle tâche" />
                 <input class="btn" type="submit" />
             </form>
-        <div class="row">
-            <div class="col-md-4 no-pg-right">
-                <section>
-                    <h2>A faire</h2>
-                    <ul>
-                        <li>Taches 3</li>
-                        <li>Taches 4</li>
-                        <li>Taches 5</li>
-
-                    </ul>
-                </section>
-            </div>
-
-
-            <div class="col-md-4 no-pg-left no-pg-right">
-                <section>
-                    <h2>En cours</h2>
-                    <div class="timer">
-                        <span>25:00</span>
-
-                    </div>
-
-                    <button type="button" class="btn" name="button">Début</button>
-                    <button type="button" class="btn" name="button">Pause</button>
-                </section>
-            </div>
-
-            <div class="col-md-4 no-pg-left">
-                <section>
-                        <h2>Fait</h2>
+            <div class="row">
+                <div class="col-md-4 no-pg-right">
+                    <section>
+                        <h2>A faire</h2>
                         <ul>
-
-                            <li>Taches 3</li>
-                            <li>Taches 4</li>
-                            <li>Taches 5</li>
+                            <li>Taches 3 <span class="glyphicon glyphicon-remove-sign"></span></li>
+                            <li>Taches 4 <span class="glyphicon glyphicon-remove-sign"></span></li>
+                            <li>Taches 5 <span class="glyphicon glyphicon-remove-sign"></span></li>
                         </ul>
-                </section>
-            </div>
+                    </section>
+                </div>
 
+                <div class="col-md-4 no-pg-left no-pg-right">
+                    <section>
+                        <h2 class="arrow_box">En cours</h2>
+
+                        <div class="timer">
+                            <span>25:00</span>
+                        </div>
+
+                        <button type="button" class="btn" name="button">Début</button>
+                        <button type="button" class="btn" name="button">Pause</button>
+                    </section>
+                </div>
+
+                <div class="col-md-4 no-pg-left">
+                    <section>
+                            <h2>Fait</h2>
+                            <ul>
+                                <li>Taches 3 <span class="glyphicon glyphicon-remove-sign"></span></li>
+                                <li>Taches 4 <span class="glyphicon glyphicon-remove-sign"></span></li>
+                                <li>Taches 5 <span class="glyphicon glyphicon-remove-sign"></span></li>
+                            </ul>
+                    </section>
+                </div>
+            </div>
         </div>
 
         <script src="static/external/bootstrap/dist/js/bootstrap.js"></script>
