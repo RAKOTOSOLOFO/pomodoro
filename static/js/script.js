@@ -6,9 +6,46 @@ function dchiffre(nb) {
 	return nb;
 }
 
-$(document).ready(function() {
-    console.log('hello');
+function launchInterval(m, s, bo, temps) {
+    var temps = setInterval(function() {
+        if (s<2 & m==0) {
+            clearInterval(temps);
+            var task = $('#selectedtask');
+            task.remove();
+            task.attr('id', '');
+            $('#done').append(task);
 
+            task.find('span').click(function() {
+                if ($(this).parent().attr('id') != 'selectedtask') {
+                    $(this).parent().remove();
+                }
+            });
+
+            $("#curnttask").html('');
+
+            $('#m').html('25');
+            $('#s').html('00');
+
+        } else {
+            s--;
+
+            if (s<1) {
+                m--;
+                s=59;
+            }
+
+            $("#s").html(dchiffre(s));
+            $("#m").html(dchiffre(m));
+        }
+
+    },1000);
+
+    // On affecte false à bo pour empécher un second Intervalle de se lancer
+    bo = false;
+    return temps;
+}
+
+$(document).ready(function() {
 
     $('#addtask').click(function() {
         var task = $('#input').val();
@@ -37,9 +74,9 @@ $(document).ready(function() {
         }
     });
 
-    var h = 0; // Heure
-    var m = 0; // Minute
-    var s = 0; // Seconde
+    // var h = 0; // Heure
+    // var m = 0; // Minute
+    // var s = 0; // Seconde
 
     var temps; // Contiendra l'exécution de notre code
     var bo = true; // Permettra de contrôler l'exécution du code
@@ -47,49 +84,31 @@ $(document).ready(function() {
     $("#start").click(function() {
 
         if ($('#selectedtask').length > 0) {
-            m = 1;
+            m = 0;
+            s = 20;
             $('#m').html(dchiffre(m));
+            $('#s').html(dchiffre(s));
             if(bo) { // On controle bo pour savoir si un autre Intervalle est lancé
-                temps = setInterval(function() {
-                    if (s==1 & m==0) {
-                        clearInterval(temps);
-                        var task = $('#selectedtask');
-                        task.remove();
-                        task.attr('class', '');
-                        $('#done').append(task);
-
-                        $("#curnttask").html('');
-
-                        $('#m').html('25');
-                        $('#s').html('00');
-                    } else {
-                        s--;
-
-                        if (s<1) {
-                            m--;
-                            s=59;
-                        }
-
-                        $("#s").html(dchiffre(s));
-                        $("#m").html(dchiffre(m));
-                    }
-
-                },1000);
-
-                // On affecte false à bo pour empécher un second Intervalle de se lancer
-                bo = false;
+                temps = launchInterval(m, s, bo);
             }
         }
     });
 
+    var paused = false;
+
     $("#pause").click(function() {
-    	clearInterval(temps); // On stop l'intervalle lancer
+        if (bo) {
+            if (!paused) {
+                clearInterval(temps); // On stop l'intervalle lancer
+                bo = true
+                paused = true;
 
-           // On affiche les variable dans les conteneur dédié
-    	$("#s").html(dchiffre(s));
-    	$("#m").html(dchiffre(m));
-
-           // Affecter true a bo pour indiquer qu'il n'y a plus d'Intervalle actif
-    	bo = true
+            } else {
+                m = parseInt($('#m').html());
+                s = parseInt($('#s').html());
+                temps = launchInterval(m, s, bo);
+                paused = false;
+            }
+        }
     });
 });
