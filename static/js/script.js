@@ -63,10 +63,6 @@ $(document).ready(function() {
         }
     });
 
-    // var h = 0; // Heure
-    // var m = 0; // Minute
-    // var s = 0; // Seconde
-
     var temps; // Contiendra l'exécution de notre code
     var bo = true; // Permettra de contrôler l'exécution du code
 
