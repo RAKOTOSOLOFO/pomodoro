@@ -122,7 +122,9 @@ ul li p {
 }
 .btn {
     border: 2px solid black;
-
+}
+form .btn {
+    width: 29.5%;
 }
 section button.btn{
     width: 70%;
@@ -146,4 +148,8 @@ section button.btn{
     font-style: italic;
     height: 2.5em;
     line-height: 2.5em;
+}
+
+.endbtn {
+    display: none;
 }

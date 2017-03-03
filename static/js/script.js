@@ -10,21 +10,10 @@ function launchInterval(m, s, bo, temps) {
     var temps = setInterval(function() {
         if (s<2 & m==0) {
             clearInterval(temps);
-            var task = $('#selectedtask');
-            task.remove();
-            task.attr('id', '');
-            $('#done').append(task);
-
-            task.find('span').click(function() {
-                if ($(this).parent().attr('id') != 'selectedtask') {
-                    $(this).parent().remove();
-                }
-            });
-
-            $("#curnttask").html('');
-
-            $('#m').html('25');
-            $('#s').html('00');
+            $("#s").html('00');
+            $("#m").html('00');
+            $('.timerbtn').hide();
+            $('.endbtn').show();
 
         } else {
             s--;
@@ -102,13 +91,42 @@ $(document).ready(function() {
                 clearInterval(temps); // On stop l'intervalle lancer
                 bo = true
                 paused = true;
+                $(this).html('Play');
 
             } else {
                 m = parseInt($('#m').html());
                 s = parseInt($('#s').html());
                 temps = launchInterval(m, s, bo);
                 paused = false;
+                $(this).html('Pause');
             }
         }
+    });
+
+    $('#terminer').click(function() {
+        var task = $('#selectedtask');
+        task.remove();
+        task.attr('id', '');
+        $('#done').append(task);
+
+        task.find('span').click(function() {
+            if ($(this).parent().attr('id') != 'selectedtask') {
+                $(this).parent().remove();
+            }
+        });
+
+        $("#curnttask").html('');
+
+        $('#m').html('25');
+        $('#s').html('00');
+
+        $('.endbtn').hide();
+        $('.timerbtn').show();
+    });
+
+    $('#recommencer').click(function() {
+        $('#start').trigger( "click" );
+        $('.endbtn').hide();
+        $('.timerbtn').show();
     });
 });
