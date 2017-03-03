@@ -153,3 +153,11 @@ section button.btn{
 .endbtn {
     display: none;
 }
+
+
+.timer span input {
+    background: none;
+    border: none;
+    width: 2em;
+    text-align: right;
+}

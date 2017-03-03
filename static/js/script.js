@@ -15,8 +15,11 @@ function launchInterval(m, s) {
             clearInterval(temps); // On suprime l'interval. Termine le chronometre
             bo = true;
 
-            $("#s").html('00'); // On passe le chronometre à zero
-            $("#m").html('00');
+            // $("#s").html('00'); // On passe le chronometre à zero
+            // $("#m").html('00');
+            $('#m').val('0');
+            $('#s').val('0');
+            $('#m, #s').prop('disabled', false);
 
             $('.timerbtn').hide(); // Cacher les bouton 'timerbtn'
             $('.endbtn').show(); // et afficher les bouton 'endbtn'
@@ -29,8 +32,10 @@ function launchInterval(m, s) {
                 s=59; // et on passe à 59 secondes
             }
 
-            $("#s").html(dchiffre(s)); // On actualise les minutes et seconde du cadran avec m et s
-            $("#m").html(dchiffre(m));
+            // $("#s").html(dchiffre(s)); // On actualise les minutes et seconde du cadran avec m et s
+            // $("#m").html(dchiffre(m));
+            $('#m').val(m);
+            $('#s').val(s);
         }
 
     }, 1000); // Intervalle de répétition en miliseconde
@@ -45,6 +50,11 @@ var bo = true; // permet de savoir si l'interval est lancé. S'il est lancé alo
 var paused = false; // On défini pause à false (deviendra true que si on clique sur "pause")
 
 $(document).ready(function() {
+
+    $('#m, #s').prop('disabled', false);
+    $('#m').val('25');
+    $('#s').val('0');
+
 
     $('#addtask').click(function(event) { // On ajoute un événement click sur le bouton qui a l'id 'addtask'
         event.preventDefault(); // Eviter que le formulaire soit envoyé (et donc que la page recharge)
@@ -62,10 +72,12 @@ $(document).ready(function() {
 
             var li = $('<li>'); // On crée un élément de liste
             li.click(function() {
-                var taskS = $(this).find('p').html(); // On récupére le nom de la tache
-                $("#curnttask").html(taskS); // On mets le nom de la tache dans le span a l'id 'curnttask'
-                $('#selectedtask').attr('id', ''); // on récupère l'élément qui à l'id selectedtask et on lui enlève
-                $(this).attr('id', 'selectedtask'); // On mets l'id selectedtask sur this (la tache sur laquelle on a cliqué)
+                if (bo && !paused) {
+                    var taskS = $(this).find('p').html(); // On récupére le nom de la tache
+                    $("#curnttask").html(taskS); // On mets le nom de la tache dans le span a l'id 'curnttask'
+                    $('#selectedtask').attr('id', ''); // on récupère l'élément qui à l'id selectedtask et on lui enlève
+                    $(this).attr('id', 'selectedtask'); // On mets l'id selectedtask sur this (la tache sur laquelle on a cliqué)
+                }
             });
 
             li.append(span); // On ajoute le span (l'icone pour suprimer) à l'élément li (la tache)
@@ -79,12 +91,15 @@ $(document).ready(function() {
         console.log(paused);
         if (bo && !paused) { // On controle bo pour savoir si un autre Intervalle est lancé
             if ($('#selectedtask').length > 0) { // Vérifie qu'il y'a plus de 0 élément qui ont l'id "selectedtask"
-                m = 0;
-                s = 20;
-                $('#m').html(dchiffre(m));
-                $('#s').html(dchiffre(s));
+                m = parseInt($('#m').val());
+                s = parseInt($('#s').val())
+                // $('#m').html(dchiffre(m));
+                // $('#s').html(dchiffre(s));
+                // $('#m').val('25');
+                // $('#s').val('0');
                 temps = launchInterval(m, s); // On lance l'interval (voir fonction en haut)
             }
+            $('#m, #s').prop('disabled', true);
         }
 
     });
@@ -93,17 +108,19 @@ $(document).ready(function() {
     $("#pause").click(function() {
         console.log(bo);
         if (!bo && !paused) { // Vérifie que l'interval est lancé et que pause est false
-                clearInterval(temps); // On stop l'intervalle lancer
-                bo = true // On passe bo a true (puisqu'on stope l'intervalle)
-                paused = true; // On pase pause a true (puisqu'on passe en pause)
-                $(this).html('Play'); // On change le contenu du boutton par "Play"
+            clearInterval(temps); // On stop l'intervalle lancer
+            bo = true // On passe bo a true (puisqu'on stope l'intervalle)
+            paused = true; // On pase pause a true (puisqu'on passe en pause)
+            $(this).html('Play'); // On change le contenu du boutton par "Play"
+            $('#m, #s').prop('disabled', false);
 
         } else if (bo && paused) { // SI l'interval n'est pas lancé et que pause est true
-            m = parseInt($('#m').html()); // On récupère les minutes et les seconde dans l'html
-            s = parseInt($('#s').html());
+            m = parseInt($('#m').val()); // On récupère les minutes et les seconde dans l'html
+            s = parseInt($('#s').val());
             temps = launchInterval(m, s); // On relance l'intervalle
             paused = false; // Et on mets pause a false (puisq'on sort de la pause)
             $(this).html('Pause'); // On rechange le contenu du bouton par "Pause"
+            $('#m, #s').prop('disabled', true);
         }
     });
 
@@ -117,8 +134,11 @@ $(document).ready(function() {
 
         $("#curnttask").html(''); // On efface le nom de la tache courante
 
-        $('#m').html('25');
-        $('#s').html('00');
+        // $('#m').html('25');
+        // $('#s').html('00');
+        $('#m').val('25');
+        $('#s').val('0');
+
 
         $('.endbtn').hide(); // Cacher les boutons 'endbtn'
         $('.timerbtn').show(); // Montrer les boutons 'timerbtn'
