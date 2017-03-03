@@ -40,6 +40,9 @@ function launchInterval(m, s) {
     return temps;
 }
 
+var temps; // contient l'interval du chronomettre
+var bo = true; // permet de savoir si l'interval est lancé. S'il est lancé alors bo = false et sinon bo = true (permet de ne pas lancer l'interval plusieurs fois)
+var paused = false; // On défini pause à false (deviendra true que si on clique sur "pause")
 
 $(document).ready(function() {
 
@@ -72,12 +75,9 @@ $(document).ready(function() {
         }
     });
 
-    var temps; // contient l'interval du chronomettre
-    var bo = true; // permet de savoir si l'interval est lancé. S'il est lancé alors bo = false et sinon bo = true (permet de ne pas lancer l'interval plusieurs fois)
-
     $("#start").click(function() {
-
-        if (bo) { // On controle bo pour savoir si un autre Intervalle est lancé
+        console.log(paused);
+        if (bo && !paused) { // On controle bo pour savoir si un autre Intervalle est lancé
             if ($('#selectedtask').length > 0) { // Vérifie qu'il y'a plus de 0 élément qui ont l'id "selectedtask"
                 m = 0;
                 s = 20;
@@ -89,7 +89,6 @@ $(document).ready(function() {
 
     });
 
-    var paused = false; // On défini pause à false (deviendra true que si on clique sur "pause")
 
     $("#pause").click(function() {
         console.log(bo);
